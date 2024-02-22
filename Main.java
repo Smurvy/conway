@@ -1,33 +1,15 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
-        BufferedReader reader;
-
-		try {
-			reader = new BufferedReader(new FileReader("main.cys"));
-			String line = reader.readLine();
-
-			while (line != null) {
-                // right now you have to put spaces between semicolons, this is stupid
-                String[] keywords = line.split("\s",0);
-                //printList(keywords);
-
-                Token[] tokenized = tokenize(keywords);
-
-                printList(tokenized);
-
-				// read next line
-				line = reader.readLine();
-			}
-
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        Lexer l = new Lexer("main.cys");
+        printList(l.getTokens());
+       
     }
+
+
+
+
 
     public static void printList(Token[] arr){
         for(int i = 0; i < arr.length; i++){
@@ -35,14 +17,33 @@ public class Main {
         }
         System.out.println();
     }
-      
-    public static Token[] tokenize(String[] arr){
-        Token[] tokens = new Token[arr.length];
 
+    public static void printList(Token[][] arr){
         for(int i = 0; i < arr.length; i++){
-            tokens[i] = new Token(arr[i]);
+            for(int j  = 0; j < arr[i].length;j++){
+                System.out.print(arr[i][j].getTokenType() + ": " + arr[i][j].getValue() + ", ");
+            }
+            System.out.println();
+            
         }
-
-        return tokens;
+        System.out.println();
     }
+
+    public static void printList(ArrayList<String> arr){
+        for(int i = 0; i < arr.size(); i++){
+            System.out.print(arr.get(i) + ", ");
+        }
+        System.out.println();
+    }
+
+    public static void printList(String[] arr){
+        for(int i = 0; i < arr.length; i++){
+            System.out.print(arr[i] + ", ");
+        }
+        System.out.println();
+    }
+      
+
+    
+
 }

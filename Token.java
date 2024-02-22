@@ -4,7 +4,6 @@ public class Token {
 
     public Token(String value){
         this.tokenType = tokenize(value);
-
         this.value = value;
     }
 
@@ -12,7 +11,11 @@ public class Token {
         if(instruction.equals("return")){return TokenType._return;}
         // regex for matching any number
         else if(instruction.matches("\\d+")){return TokenType.INT_VALUE;}
-        else if(instruction.matches(";")){return TokenType.SEMICOLON;}
+        else if(instruction.equals(";")){return TokenType.SEMICOLON;}
+        else if(instruction.equals("{")){return TokenType.OPEN_BRACE;}
+        else if(instruction.equals("}")){return TokenType.CLOSE_BRACE;}
+        else if(instruction.equals("(")){return TokenType.OPEN_PARENTHESES;}
+        else if(instruction.equals(")")){return TokenType.CLOSE_PARENTHESES;}
         else {return TokenType.EXIT;}
     }
 
