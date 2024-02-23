@@ -102,7 +102,7 @@ public class Lexer {
     }
 
     public Token[] tokenize(String[] arr){
-        Main.printList(arr);
+        //Main.printList(arr);
         Token[] temp_tokens = new Token[arr.length];
 
         for(int i = 0; i < arr.length; i++){

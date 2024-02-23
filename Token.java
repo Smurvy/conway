@@ -6,16 +6,21 @@ public class Token {
         this.tokenType = tokenize(value);
         this.value = value;
     }
+    public Token(TokenType t){
+        this.tokenType = t;
+        this.value = null;
+    }
 
-    public TokenType tokenize(String instruction){
+    public static TokenType tokenize(String instruction){
         if(instruction.equals("return")){return TokenType._return;}
         // regex for matching any number
         else if(instruction.matches("\\d+")){return TokenType.INT_VALUE;}
         else if(instruction.equals(";")){return TokenType.SEMICOLON;}
-        else if(instruction.equals("{")){return TokenType.OPEN_BRACE;}
-        else if(instruction.equals("}")){return TokenType.CLOSE_BRACE;}
-        else if(instruction.equals("(")){return TokenType.OPEN_PARENTHESES;}
-        else if(instruction.equals(")")){return TokenType.CLOSE_PARENTHESES;}
+        else {return TokenType.EXIT;}
+    }
+
+    public static TokenType tokenize(char specialChar){
+        if(specialChar == ';'){return TokenType.SEMICOLON;}
         else {return TokenType.EXIT;}
     }
 
@@ -25,5 +30,20 @@ public class Token {
 
     public String getValue(){
         return this.value;
+    }
+
+    @Override
+    public boolean equals(Object t){
+        if(t.getClass() != this.getClass()){
+            return false;
+        }
+
+        Token casted = (Token) t;
+
+        if(this.getTokenType() == casted.getTokenType()){
+            return true;
+        }
+
+        return false;
     }
 }

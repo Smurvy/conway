@@ -3,20 +3,12 @@ public enum TokenType {
     _return,
     INT_VALUE,
     SEMICOLON,
-    OPEN_BRACE,
-    CLOSE_BRACE,
-    OPEN_PARENTHESES,
-    CLOSE_PARENTHESES,
     EXIT;
 
     // if there is a special character associated, then add it here
     // don't forget to add an else statement to tokenize function in the token class
     public static final char[] specialChars = {
-        ';',
-        '{',
-        '}',
-        '(',
-        ')'
+        ';'
     };
 
     public static boolean containsSpecialChar(String word){
@@ -40,4 +32,18 @@ public enum TokenType {
 
         return -1;
     }
+
+    public static int nextSpecialChar(Token[] tokens){
+        for(int i = 0; i < tokens.length; i++) {
+            Token curToken = tokens[i];
+            for(int j = 0; j < specialChars.length;j++){
+                if(curToken.getTokenType() == Token.tokenize(specialChars[j])){
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
 }

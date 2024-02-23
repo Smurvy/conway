@@ -4,7 +4,9 @@ public class Main {
     public static void main(String[] args){
         Lexer l = new Lexer("main.cys");
         printList(l.getTokens());
-       
+
+        Parser p = new Parser(l.getTokens());
+        
     }
 
 
